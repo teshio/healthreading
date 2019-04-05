@@ -61,6 +61,8 @@ app.controller('loginController', function($scope, $rootScope, $http, $httpParam
         },
         function(response) { // optional
           console.log(response);
+          $scope.loading = false;
+          $scope.loginMessage = response.data.error_description;
         });
   }
 });
