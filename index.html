@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha256-YLGeXaapI0/5IgZopewRJcFXomhRMlYYjugPLSyNjTY=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" />
+    <style>
+      html {
+  background: url(/images/bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-slim@3.0.0/dist/jquery.slim.min.js" integrity="sha256-Rf4BadfyCtsvHmO89BUZcbYvNNvZvOT08ALfEzvCsD0=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha256-fzFFyH01cBVPYzl16KT40wqjhgPtq6FFUB6ckN2+GGw=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js" integrity="sha256-47AQCzX6dqzjicKe4PabaBJtLnWffl34LU9WJUulNog=" crossorigin="anonymous"></script>
+    <script src="/scripts/main.js">
+    </script>
+  </head>
+
+  <body ng-app="myApp" style="background-color:transparent">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Gravitywell Health</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <!--<li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>-->
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+
+          <div class="card m-2 p-2 text-white bg-dark" ng-controller="loginController" ng-hide="loggedIn">
+            <div>
+              <form class="form">
+
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" id="email" ng-model="login.username" aria-describedby="emailHelp" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                  <label for="email">Password</label>
+                  <input type="password" ng-model="login.password" autocomplete="off" class="form-control" />
+                </div>
+
+              </form>
+
+              <button ng-click="run()" class="btn btn-primary btn-block col-6" ng-disabled="loading">
+                Login
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+
+          <div class="card m-2 p-2 text-white bg-dark">
+            <div ng-controller="readingController">
+
+              <table class="table table-striped  table-dark">
+                <thead>
+                <tr>
+                  <th>Weight</th>
+                  <th>Date</th>
+                  <th>Fat %</th>
+                  <th>Muscle %</th>
+                  <th>Fat Level</th>
+                  <th>bmi</th>
+                  <th></th>
+                <tr>
+                  </thead>
+                <tr ng-repeat="f in data | orderBy : '-readingDate'">
+                  <td>{{f.weightKg}}</td>
+                  <td>{{f.readingDate}}</td>
+                  <td>{{f.fatPercent}}</td>
+                  <td>{{f.musclePercent}}</td>
+                  <td>{{f.viscrealFatLevel}}</td>
+                  <td>{{f.bmi}}</td>
+                  <td><button class="btn btn-danger "><i class="fa fa-trash-alt"></i></button></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </body>
+
+</html>
