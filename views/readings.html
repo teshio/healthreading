@@ -13,12 +13,12 @@
               <th>Muscle %</th>
               <th>Fat Level</th>
               <th>bmi</th>
-              <th> <a href="readings/add" class="btn btn-primary"><i class="fa fa-plus"></i></a></th>
+              <th> <button ng-click="editReading(null)" class="btn btn-primary"><i class="fa fa-plus"></i></button></th>
             <tr>
           </thead>
           <tr ng-repeat="f in data | orderBy : '-readingDate'">
             <td>{{f.weightKg}}</td>
-            <td>{{f.readingDate | date}}</td>
+            <td>{{f.readingDate | date:'yyyy-MM-dd HH:mm:ss Z'}}</td>
             <td>{{f.fatPercent}}</td>
             <td>{{f.musclePercent}}</td>
             <td>{{f.viscrealFatLevel}}</td>
@@ -84,7 +84,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" ng-click="saveReading()">Save changes</button>
       </div>
     </div>
   </div>

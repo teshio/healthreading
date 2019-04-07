@@ -32,7 +32,7 @@
   }]);
 
 
-  app.factory('ReadingService', function($http) {
+  app.factory('ReadingService', function($http, $q) {
     return {
       setToken: function(token) {
         this.token = token;
@@ -53,6 +53,18 @@
           onSuccess();
         }
 
+      },
+      saveReading: function(reading) {
+        return $q(function(resolve, reject) {
+          $http({
+            url: 'https://healthreading.azurewebsites.net/api/reading/',
+            method: reading.id > 0 ? 'PUT' : 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'bearer ' + this.token
+            }
+          })
+        });
       },
       logout: function() {
         this.token = null;
@@ -88,7 +100,7 @@
 
   });
 
-  app.controller('readingController', function($scope, $http, $httpParamSerializer, ReadingService) {
+  app.controller('readingController', function($scope, $rootScope, $http, $httpParamSerializer, ReadingService) {
     var initialise = function() {
       ReadingService.getReadings(function(data) {
         console.log(data.data);
@@ -104,24 +116,43 @@
       });
     }
 
+    $scope.saveReading = function() {
+      var r = $rootScope.reading;
+      ReadingService.saveReading(r)
+        .then(function() {
+
+          if (r.id > 0) {
+            var existingReading = filter($scope.data, function(item, i) {
+              return item.id == r.id;
+            })[0];
+          }else{
+            $scope.data.push(r);
+          }
+        });
+    }
+
     $scope.editReading = function(reading) {
 
       $('#readingDialog').modal();
-      reading.readingDate = null;
-      $scope.reading = reading;
-      $rootScope.reading = reading;
-      window.setTimeout(2000, function(){
 
-      });
-/*
-      $uibModal.open({
-        templateUrl: 'views/readingForm.html',
-        controller: function($scope) {
-          debugger;
+      var copiedReading = {};
+      if (reading == null) {
+        copiedReading = {
+          readingDate: moment().toDate(),
+
         }
-      });*/
-      //$scope.reading = reading;
-
+      } else {
+        copiedReading = {
+          id: reading.id,
+          readingDate: moment(reading.readingDate).toDate(),
+          weightKg: reading.weightKg,
+          musclePercent: reading.musclePercent,
+          fatPercent: reading.fatPercent,
+          bmi: reading.bmi,
+          viscrealFatLevel: reading.viscrealFatLevel
+        }
+      }
+      $rootScope.reading = copiedReading;
     }
 
     initialise();
