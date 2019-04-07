@@ -55,13 +55,15 @@
 
       },
       saveReading: function(reading) {
+        var token = this.token;
         return $q(function(resolve, reject) {
           $http({
             url: 'https://healthreading.azurewebsites.net/api/reading/',
             method: reading.id > 0 ? 'PUT' : 'POST',
+            data: reading,
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'bearer ' + this.token
+              'Authorization': 'bearer ' + token
             }
           })
         });
