@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="en">
-
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -10,15 +8,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" />
     <style>
       html {
-  background: url(images/bg.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
+        background: url(images/bg.jpg) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
 
     </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.js" integrity="sha256-dgFbqbQVzjkZPQxWd8PBtzGiRBhChc4I2wO/q/s+Xeo=" crossorigin="anonymous"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.js" integrity="sha256-dgFbqbQVzjkZPQxWd8PBtzGiRBhChc4I2wO/q/s+Xeo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-slim@3.0.0/dist/jquery.slim.min.js" integrity="sha256-Rf4BadfyCtsvHmO89BUZcbYvNNvZvOT08ALfEzvCsD0=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js" integrity="sha256-47AQCzX6dqzjicKe4PabaBJtLnWffl34LU9WJUulNog=" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>
@@ -27,7 +25,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha256-fzFFyH01cBVPYzl16KT40wqjhgPtq6FFUB6ckN2+GGw=" crossorigin="anonymous"></script>
     <!--<script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>-->
 
+    <script src="scripts/apps/myapp.js"></script>
     <script src="scripts/main.js"></script>
+    <script src="scripts/controllers/maincontroller.js"></script>
+    <script src="scripts/controllers/logincontroller.js"></script>
+    <script src="scripts/controllers/readingcontroller.js"></script>
+    <script src="scripts/services/readingservice.js"></script>
+
     <script type="text/javascript">
       angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
     </script>
@@ -42,16 +46,16 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <a class="nav-link" ng-class="classActive('/login')" href="login" ng-hide="isLoggedIn" >Login</a>
+          <a class="nav-link" ng-class="classActive('/login')" href="login" ng-hide="isLoggedIn">Login</a>
           <li class="nav-item">
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" ng-class="classActive('/readings')"  ng-show="isLoggedIn" href="readings">Readings</a>
+            <a class="nav-link" ng-class="classActive('/readings')" ng-show="isLoggedIn" href="readings">Readings</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" ng-class="classActive('/logout')"  ng-show="isLoggedIn" ng-click="logout()">Logout</a>
+            <a class="nav-link" ng-class="classActive('/logout')" ng-show="isLoggedIn" ng-click="logout()">Logout</a>
           </li>
 
           <!--
@@ -71,7 +75,7 @@
     </nav>
     <div class="container-fluid">
 
-            <div ng-view></div>
+      <div ng-view></div>
 
 
 
